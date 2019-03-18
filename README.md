@@ -1,5 +1,7 @@
 # awall-config-front
 
+[![CircleCI](https://circleci.com/gh/awall-config/awall-config-front.svg?style=svg)](https://circleci.com/gh/awall-config/awall-config-front)
+
 ## Project setup
 ```
 yarn install
