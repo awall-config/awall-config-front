@@ -1,0 +1,8 @@
+export const LISTED_INTERFACES = 'listedInterface'
+export const UPDATED_ZONE = 'updatedZone'
+export const UPDATED_VARIABLE = 'updatedVariable'
+export const UPDATED_POLICY = 'updatedPolicy'
+export const UPDATED_SERVICE = 'updatedService'
+export const UPDATED_FILTER = 'updatedFilter'
+export const UPDATED_SNAT = 'updatedSnat'
+export const UPDATED_DNAT = 'updatedDnat'
