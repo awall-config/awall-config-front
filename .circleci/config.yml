@@ -1,0 +1,22 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:10.15-stretch
+    steps:
+      - checkout
+      - run:
+          command: |
+            npm set prefix=/home/circleci/npm && echo 'export PATH=$HOME/circleci/npm/bin:$PATH' >> /home/circleci/.bashrc
+            npm install -g yarn
+            npm install -g @vue/cli
+            npm install -g @vue/cli-service-global
+            yarn install
+            yarn build
+            cd dist
+            tar czvf awall-config-front.tar.gz *
+      - store_artifacts:
+          path: dist/awall-config-front.tar.gz
+          destination: awall-config.front.tar.gz
+
+
