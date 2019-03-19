@@ -15,8 +15,36 @@ jobs:
             yarn build
             cd dist
             tar czvf awall-config-front.tar.gz *
+            mkdir ../artifacts
+            cp awall-config-front.tar.gz ../artifacts
       - store_artifacts:
           path: dist/awall-config-front.tar.gz
-          destination: awall-config.front.tar.gz
+          destination: artifacts/awall-config.front.tar.gz
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./artifacts
+
+  publish-github-release:
+    docker:
+      - image: circleci/golang:1.8
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace
+      - run:
+          name: "Publish Release on GitHub"
+          command: |
+            go get github.com/tcnksm/ghr
+            VERSION=latest
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} /tmp/workspace/artifacts
+workflows:
+  version: 2
+  build_and_publish:
+    jobs:
+      - build
+      - publish-github-release:
+          requires:
+            - build
+
 
 
