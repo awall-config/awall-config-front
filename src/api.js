@@ -10,7 +10,7 @@ class AwallApiService{
   }
 
   async listInterfaces() {
-    let url = this._url('/interfaces')
+    let url = this._url('interfaces')
 
     let result = await this.axios.get(url)
 
