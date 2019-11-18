@@ -1,16 +1,19 @@
 class AwallApiService{
 
-  constructor (axios, apiRoot) {
-    this.apiRoot = apiRoot
+  constructor (axios, config) {
     this.axios = axios
+    this.config = config
   }
 
-  _url(path) {
-    return this.apiRoot + '/' + path
+  async _url(path) {
+    let config = await this.config.getConfig()
+
+    let apiRoot = config.apiBaseUrl
+    return apiRoot + '/' + path
   }
 
   async listInterfaces() {
-    let url = this._url('interfaces')
+    let url = await this._url('interfaces')
 
     let result = await this.axios.get(url)
 

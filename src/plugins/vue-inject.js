@@ -3,10 +3,11 @@ import injector from 'vue-inject';
 import Vue from 'vue';
 import axios from 'axios';
 import AwallApiService from '../api'
+import Config from '../config'
 
-injector.constant('apiRoot', 'http://localhost:7878');
 injector.constant('axios', axios);
 
-injector.service('awallApiService', ['axios', 'apiRoot'], AwallApiService)
+injector.service('config', ['axios'], Config);
+injector.service('awallApiService', ['axios', 'config'], AwallApiService);
 
 Vue.use(injector);
