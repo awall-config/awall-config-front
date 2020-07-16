@@ -10,7 +10,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "core-js": "^3.3.2",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "vue": "^2.6.6",
     "vue-inject": "^2.1.1",
     "vue-router": "^3.0.2",
